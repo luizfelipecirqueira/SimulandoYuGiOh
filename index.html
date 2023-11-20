@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    #game-board {
+      display: flex;
+    }
+
+    .card {
+      width: 100px;
+      height: 150px;
+      margin: 0 10px;
+      background-color: white;
+      border: 1px solid #ddd;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    #player-hand, #opponent-hand {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+  <title>Yu-Gi-Oh! Card Game</title>
+</head>
+<body>
+
+  <div id="game-board">
+    <div id="player-hand"></div>
+    <div id="opponent-hand"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playerHand = document.getElementById('player-hand');
+      const opponentHand = document.getElementById('opponent-hand');
+
+      const cardData = [
+        { name: 'Blue-Eyes White Dragon', attack: 3000, defense: 2500 },
+        { name: 'Dark Magician', attack: 2500, defense: 2100 },
+        { name: 'Red-Eyes Black Dragon', attack: 2400, defense: 2000 },
+        // Adicione mais cartas conforme necessário
+      ];
+
+      function createCard(name, attack, defense) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.textContent = `${name}\nA: ${attack}\nD: ${defense}`;
+        card.addEventListener('click', () => playCard(name));
+        return card;
+      }
+
+      function playCard(name) {
+        alert(`Você jogou a carta: ${name}`);
+        // Lógica do jogo quando uma carta é jogada
+      }
+
+      function initializeGame() {
+        for (const card of cardData) {
+          const playerCard = createCard(card.name, card.attack, card.defense);
+          playerHand.appendChild(playerCard);
+
+          const opponentCard = createCard('Opponent Card', '?', '?');
+          opponentHand.appendChild(opponentCard);
+        }
+      }
+
+      initializeGame();
+    });
+  </script>
+</body>
+</html>
